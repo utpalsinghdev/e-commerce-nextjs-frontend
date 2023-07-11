@@ -1,12 +1,7 @@
-
-
 export default function Home() {
   return (
     <>
-     
-      <main>
-        Home page
-      </main>{" "}
+      <main className="h-screen">Home page </main>{" "}
     </>
   );
 }
