@@ -1,3 +1,5 @@
+import Footer from "@/components/Footer";
+import Headers from "@/components/Headers";
 import "@/styles/globals.css";
 import Head from "next/head";
 
@@ -20,7 +22,9 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>{" "}
+      <Headers />
       <Component {...pageProps} />{" "}
+      <Footer />
     </>
   );
 }
