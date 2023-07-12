@@ -18,17 +18,17 @@ const Headers = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-        if (currentScrollY > lastScrollY) {
-            setShow("-translate-y-full");
-        } else {
-            setShow("translate-y-0");
-        }
-        setLastScrollY(currentScrollY);
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        setShow("-translate-y-full");
+      } else {
+        setShow("translate-y-0");
+      }
+      setLastScrollY(currentScrollY);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
+  }, [lastScrollY]);
   return (
     <header
       className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show}`}
@@ -52,12 +52,14 @@ const Headers = () => {
               51
             </div>
           </div>
-          <div className="w-8 md:w-12 h-8 md:h-12 flex items-center justify-center rounded-full  hover:bg-black/[0.05] cursor-pointer relative">
-            <AiOutlineShoppingCart className="text-[15px] md:text-[20px] text-black" />
-            <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex items-center justify-center px-[2px] md:px-[5px]">
-              5
+          <Link href="/cart">
+            <div className="w-8 md:w-12 h-8 md:h-12 flex items-center justify-center rounded-full  hover:bg-black/[0.05] cursor-pointer relative">
+              <AiOutlineShoppingCart className="text-[15px] md:text-[20px] text-black" />
+              <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex items-center justify-center px-[2px] md:px-[5px]">
+                5
+              </div>
             </div>
-          </div>
+          </Link>
           <div className="w-8 md:hidden md:w-12 h-8 md:h-12 flex items-center justify-center rounded-full  hover:bg-black/[0.05] cursor-pointer relative -mr-2 transition-all duration-150 ease-in">
             {mobileMenu === true ? (
               <VscChromeClose
