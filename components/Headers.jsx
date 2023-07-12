@@ -10,12 +10,16 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiMenuAltRight } from "react-icons/bi";
 import { VscChromeClose } from "react-icons/vsc";
+import { fetchData } from "@/pages/utils/api";
 const Headers = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState("translate-y-0");
   const [lastScrollY, setLastScrollY] = useState(0);
-
+  const [cats, setCats] = useState([]);
+  useEffect(() => {
+    fetchCats();
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -29,6 +33,11 @@ const Headers = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  const fetchCats = async () => {
+    const { data } = await fetchData("/api/caterogies?populate=*");
+    setCats(data);
+  };
   return (
     <header
       className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show}`}
@@ -37,9 +46,10 @@ const Headers = () => {
         <Link href="/">
           <img src="/logo.svg" alt="logo" className="w-[40px] md:w-[60px]" />
         </Link>
-        <Menu showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} />
+        <Menu showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} cats={cats} />
         {mobileMenu && (
           <MenuMobile
+            cats={cats}
             showCatMenu={showCatMenu}
             setShowCatMenu={setShowCatMenu}
             setMobileMenu={setMobileMenu}

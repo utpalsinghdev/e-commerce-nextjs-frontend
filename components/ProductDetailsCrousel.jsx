@@ -3,7 +3,8 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { BiArrowBack } from "react-icons/bi";
-const ProductDetailsCrousel = () => {
+import Image from "next/image";
+const ProductDetailsCrousel = ({ images }) => {
   return (
     <div className="text-white text-[20px] w-full max-w-[1360px] mx-auto sticky top-12">
       <Carousel
@@ -14,41 +15,14 @@ const ProductDetailsCrousel = () => {
         thumbWidth={60}
         className="productCarousel"
       >
-        <img
-          src="/p1.png"
-          alt="slide1"
-          className="aspect-[16/10] md:aspect-auto object-cover"
-        />
-        <img
-          src="/p2.png"
-          alt="slide1"
-          className="aspect-[16/10] md:aspect-auto object-cover"
-        />
-        <img
-          src="/p3.png"
-          alt="slide1"
-          className="aspect-[16/10] md:aspect-auto object-cover"
-        />
-        <img
-          src="/p4.png"
-          alt="slide1"
-          className="aspect-[16/10] md:aspect-auto object-cover"
-        />
-        <img
-          src="/p5.png"
-          alt="slide1"
-          className="aspect-[16/10] md:aspect-auto object-cover"
-        />
-        <img
-          src="/p6.png"
-          alt="slide1"
-          className="aspect-[16/10] md:aspect-auto object-cover"
-        />
-        <img
-          src="/p7.png"
-          alt="slide1"
-          className="aspect-[16/10] md:aspect-auto object-cover"
-        />
+        {images?.map((img, idx) => (
+          <img
+            key={idx}
+            src={img?.attributes?.url}
+            alt={img?.attributes?.name}
+            className="aspect-[16/10] md:aspect-auto object-cover"
+          />
+        ))}
       </Carousel>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
-const Menu = ({ showCatMenu, setShowCatMenu }) => {
+const Menu = ({ showCatMenu, setShowCatMenu, cats }) => {
   const data = [
     { id: 1, name: "Home", url: "/" },
     { id: 2, name: "About", url: "/about" },
@@ -9,12 +9,7 @@ const Menu = ({ showCatMenu, setShowCatMenu }) => {
     { id: 4, name: "Contact", url: "/contact" },
   ];
 
-  const subMenuData = [
-    { id: 1, name: "Jordan", doc_count: 11 },
-    { id: 2, name: "Sneakers", doc_count: 8 },
-    { id: 3, name: "Running shoes", doc_count: 64 },
-    { id: 4, name: "Football shoes", doc_count: 107 },
-  ];
+
   return (
     <ul className="hidden md:flex items-center gap-8 font-medium text-black">
       {data.map((item, index) => (
@@ -33,13 +28,13 @@ const Menu = ({ showCatMenu, setShowCatMenu }) => {
               <BsChevronDown size={14} />
               {showCatMenu && (
                 <ul className="absolute top-6 left-0 min-w-[250px] px-1 py-1 bg-white shadow-lg">
-                  {subMenuData.map((item, index) => (
-                    <Link key={item.id} href={`/category/${item.name}`}>
+                  {cats.map((item, index) => (
+                    <Link key={item.id} href={`/category/${item?.attributes?.slug}`}>
                       <li className="h-12 flex items-center justify-between px-3 py-2 hover:bg-black/[0.03] rounded-md cursor-pointer ">
-                        {item.name}
+                        {item?.attributes?.name}
 
                         <span className="text-sm opacity-50">
-                          ({item.doc_count})
+                          ({item.attributes.products?.data?.length})
                         </span>
                       </li>
                     </Link>

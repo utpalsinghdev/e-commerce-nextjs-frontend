@@ -21,7 +21,7 @@ const responsive = {
     items: 1,
   },
 };
-const RelatedProduct = () => {
+const RelatedProduct = ({products}) => {
   return (
     <div className="mt-12  md:mt-24 mb-24 md:mb-0 ">
       <div className="text-2xl font-bold mb-5">You Might Also Like</div>
@@ -30,12 +30,10 @@ const RelatedProduct = () => {
         containerClass="-mx-2 "
         itemClass="px-2"
       >
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {products.data.map((p,idx)=>(
+          <ProductCard key={idx} product={p} />
+        ))}
+        
       </Carousel>
     </div>
   );
