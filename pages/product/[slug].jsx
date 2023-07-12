@@ -7,7 +7,7 @@ import Wrapper from "@/components/Wrapper";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
-import { fetchData } from "../utils/api";
+import { fetchData } from "../../utils/api";
 import  ReactMarkdown from "react-markdown";
 ProductCard;
 const ProjectDetails = ({ product, products }) => {

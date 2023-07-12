@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 ProductCard;
 import useSWR from "swr";
-import { fetchData } from "../utils/api";
+import { fetchData } from "../../utils/api";
 
 const Category = ({ products, category, slug }) => {
   const [pageIndex, setPageIndex] = useState(1);
